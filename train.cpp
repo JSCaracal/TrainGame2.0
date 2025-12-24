@@ -1,6 +1,7 @@
 #include <iostream>
 #include "raylib.h"
-
+#define TURN_SPEED 0.01f
+#define SPEED 0.01f
 class train
 {
 private:
@@ -23,6 +24,7 @@ public:
     float getAngle();
     void setAngle(float angle);
     Vector2 getPosition();
+    Vector2 getSize();
     void SetPosition(float x, float y);
     void SetPosition(Vector2 pos);
     ~train();
@@ -57,23 +59,22 @@ void train::DrawTrain(){
 
 
 void train::SwitchTrackUp(){
-    if(this->angle >= 315.0f || this->angle == 0.0f){
-        this->angle -= 0.001f;
+    if(this->angle >= 315.0f && this->trainRect.y > 200){
+        this->angle -= TURN_SPEED;
     }
     if(this->angle <= 315.0f && this->trainRect.y > 100){
-        this->trainRect.y -= this->speed;
-        this->trainRect.x += this->speed;
+        this->trainRect.y -= SPEED;
+        this->trainRect.x += SPEED;
     }
-    if(this->trainRect.y <= 100){
-        if(this->angle <= 360.0f){
-            this->angle += 0.001f;
-        }
+    if(this->trainRect.y <= 100 && this->angle < 360.0f){
+        std::cout << "Third condtion met" << std::endl;
+        this->angle += TURN_SPEED;
     }
 }
 
 
 void train::Move(){
-    this->position.x += this->speed;
+    this->trainRect.x += SPEED;
 }
 
 void train::Turn(float angle){
@@ -99,6 +100,10 @@ float train::getAngle(){
 
 void train::setAngle(float angle){
     this->angle = angle;
+}
+
+Vector2 train::getSize(){
+    return this->size;
 }
 
 train::~train()

@@ -31,10 +31,15 @@ int main(void)
     {
        
         //amtrak.Move();
-        amtrak.SwitchTrackUp();
-       //if(amtrak.getPosition().x > screenWidth)
-        //amtrak.SetPosition(-200, screenHeight/2.0f);    
-
+        if(amtrak.getPosition().x >= trainTest.x && amtrak.getPosition().y > 99.5f)
+            amtrak.SwitchTrackUp();
+        if(amtrak.getPosition().y < 100 && amtrak.getAngle() >= 360.0f)
+           amtrak.Move();
+        if(amtrak.getPosition().x < trainTest.x && amtrak.getPosition().y <= 100.0f)
+            amtrak.Move();
+        if(amtrak.getPosition().x > screenWidth+amtrak.getSize().x){
+            amtrak.SetPosition(trainTest.x, trainTest.y);
+        }
         BeginDrawing();
             ClearBackground(RAYWHITE);
 
