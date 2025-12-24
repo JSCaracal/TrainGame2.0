@@ -1,0 +1,6 @@
+{
+    "name": "raylibfirstthing",
+    "dependencies": [
+        "raylib"
+    ]
+}
