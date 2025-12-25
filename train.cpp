@@ -1,7 +1,7 @@
 #include <iostream>
 #include "raylib.h"
 #define TURN_SPEED 0.01f
-#define SPEED 0.01f
+#define SPEED 0.05f
 class train
 {
 private:
@@ -67,7 +67,6 @@ void train::SwitchTrackUp(){
         this->trainRect.x += SPEED;
     }
     if(this->trainRect.y <= 100 && this->angle < 360.0f){
-        std::cout << "Third condtion met" << std::endl;
         this->angle += TURN_SPEED;
     }
 }

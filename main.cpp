@@ -33,12 +33,11 @@ int main(void)
         //amtrak.Move();
         if(amtrak.getPosition().x >= trainTest.x && amtrak.getPosition().y > 99.5f)
             amtrak.SwitchTrackUp();
-        if(amtrak.getPosition().y < 100 && amtrak.getAngle() >= 360.0f)
+        if((amtrak.getPosition().y < 100 && amtrak.getAngle() >= 360.0f) || (amtrak.getPosition().x <= trainTest.x))
            amtrak.Move();
-        if(amtrak.getPosition().x < trainTest.x && amtrak.getPosition().y <= 100.0f)
-            amtrak.Move();
-        if(amtrak.getPosition().x > screenWidth+amtrak.getSize().x){
-            amtrak.SetPosition(trainTest.x, trainTest.y);
+        
+        if(amtrak.getPosition().x > screenWidth+amtrak.getSize().x/2){
+            amtrak.SetPosition(Vector2{0-amtrak.getSize().x/2,trainTest.y});
         }
         BeginDrawing();
             ClearBackground(RAYWHITE);
